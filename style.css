@@ -1,0 +1,14 @@
+.dropzone {
+            border: 2px dashed #cbd5e0;
+            transition: all 0.3s ease;
+        }
+        .dropzone.active {
+            border-color: #4f46e5;
+            background-color: #f0f7ff;
+        }
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+        .file-item:hover .file-remove {
+            opacity: 1;
+        }
