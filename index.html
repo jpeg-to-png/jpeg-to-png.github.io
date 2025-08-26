@@ -25,7 +25,7 @@
     <meta property="twitter:image" content="https://jpeg-to-png.github.io/images/preview.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <!-- Hotjar Tracking Code for https://jpeg-to-png.github.io/ -->
     <script>
         (function(h,o,t,j,a,r){
@@ -69,12 +69,33 @@
                     <a href="#" class="text-gray-600 hover:text-indigo-600">Accueil</a>
                     <a href="#how-it-works" class="text-gray-600 hover:text-indigo-600">Comment ça marche</a>
                 </nav>
-                <button class="md:hidden text-gray-600">
+                <button id="mobileMenuButton" class="md:hidden text-gray-600">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobileMenu" class="fixed inset-0 bg-white z-50 hidden transform transition-transform duration-300 ease-in-out translate-y-full">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex justify-between items-center mb-8">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-indigo-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-exchange-alt text-white text-lg"></i>
+                    </div>
+                    <h1 class="text-2xl font-bold text-gray-800">jpeg-to-png</h1>
+                </div>
+                <button id="closeMobileMenu" class="text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-4">
+                <a href="#" class="px-4 py-3 text-xl font-medium text-gray-800 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg">Accueil</a>
+                <a href="#how-it-works" class="px-4 py-3 text-xl font-medium text-gray-800 hover:bg-indigo-50 hover:text-indigo-600 rounded-lg">Comment ça marche</a>
+            </nav>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-12">
@@ -324,6 +345,35 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Gestion du menu mobile
+            const mobileMenuButton = document.getElementById('mobileMenuButton');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+
+            function toggleMobileMenu() {
+                if (mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.remove('hidden');
+                    setTimeout(() => {
+                        mobileMenu.classList.remove('translate-y-full');
+                        mobileMenu.classList.add('translate-y-0');
+                    }, 20);
+                } else {
+                    mobileMenu.classList.add('translate-y-full');
+                    mobileMenu.classList.remove('translate-y-0');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300);
+                }
+            }
+
+            mobileMenuButton.addEventListener('click', toggleMobileMenu);
+            closeMobileMenu.addEventListener('click', toggleMobileMenu);
+
+            // Fermer le menu quand on clique sur un lien
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', toggleMobileMenu);
+            });
+
             // Gestion des modales
             document.querySelectorAll('a[href^="#"]').forEach(link => {
                 link.addEventListener('click', function(e) {
