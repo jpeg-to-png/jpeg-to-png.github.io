@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jpeg-to-png - Convertisseur JPEG vers PNG en ligne</title>
+    <title>jpeg2png - Convertisseur JPEG vers PNG en ligne</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
@@ -21,9 +21,7 @@
                 </div>
                 <nav class="hidden md:flex space-x-8">
                     <a href="#" class="text-gray-600 hover:text-indigo-600">Accueil</a>
-                    <a href="#" class="text-gray-600 hover:text-indigo-600">Comment ça marche</a>
-                    <a href="#" class="text-gray-600 hover:text-indigo-600">À propos</a>
-                    <a href="#" class="text-gray-600 hover:text-indigo-600">Contact</a>
+                    <a href="#how-it-works" class="text-gray-600 hover:text-indigo-600">Comment ça marche</a>
                 </nav>
                 <button class="md:hidden text-gray-600">
                     <i class="fas fa-bars text-xl"></i>
@@ -167,24 +165,20 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4">jpeg2png</h3>
+                    <h3 class="text-xl font-bold mb-4">jpeg-to-png</h3>
                     <p class="text-gray-400">L'outil en ligne simple et efficace pour convertir vos images JPEG en PNG.</p>
                 </div>
                 <div>
                     <h4 class="font-medium mb-4">Navigation</h4>
                     <ul class="space-y-2">
                         <li><a href="#" class="text-gray-400 hover:text-white">Accueil</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Comment ça marche</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">À propos</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Contact</a></li>
+                        <li><a href="#how-it-works" class="text-gray-400 hover:text-white">Comment ça marche</a></li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="font-medium mb-4">Légal</h4>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Conditions d'utilisation</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Politique de confidentialité</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Cookies</a></li>
+                        <li><a href="#privacy-modal" class="text-gray-400 hover:text-white">Confidentialité</a></li>
                     </ul>
                 </div>
                 <div>
@@ -207,14 +201,48 @@
         </div>
     </footer>
 
+    <!-- Modales -->
+    <div id="how-it-works-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl w-full">
+            <h2 class="text-2xl font-bold text-indigo-600 mb-4">Comment ça marche</h2>
+            <div class="prose">
+                <p>Notre convertisseur JPEG vers PNG est simple et efficace :</p>
+                <ol class="list-decimal pl-5 space-y-2">
+                    <li>Téléversez vos images JPEG via glisser-déposer ou en cliquant sur la zone</li>
+                    <li>Configurez les options de conversion (qualité et taille)</li>
+                    <li>Cliquez sur "Convertir" et attendez quelques secondes</li>
+                    <li>Téléchargez vos images PNG converties</li>
+                </ol>
+                <p class="mt-4">Toutes les conversions sont effectuées directement dans votre navigateur - vos images ne sont jamais envoyées sur nos serveurs.</p>
+            </div>
+            <button onclick="document.getElementById('how-it-works-modal').classList.add('hidden')" class="mt-6 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">Fermer</button>
+        </div>
+    </div>
+
+    <div id="privacy-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-xl shadow-lg p-8 max-w-2xl w-full">
+            <h2 class="text-2xl font-bold text-indigo-600 mb-4">Politique de confidentialité</h2>
+            <div class="prose">
+                <p>Nous respectons votre vie privée :</p>
+                <ul class="list-disc pl-5 space-y-2">
+                    <li>Toutes les conversions sont effectuées localement dans votre navigateur</li>
+                    <li>Vos images ne sont jamais envoyées à nos serveurs</li>
+                    <li>Nous ne stockons aucune de vos images</li>
+                    <li>Nous n'utilisons pas de cookies de suivi</li>
+                    <li>Ce service est 100% gratuit et sans publicité</li>
+                </ul>
+            </div>
+            <button onclick="document.getElementById('privacy-modal').classList.add('hidden')" class="mt-6 px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">Fermer</button>
+        </div>
+    </div>
+
     <!-- Ajout d'un son (petit "ding") -->
-<!-- À placer juste avant </body> -->
-<audio id="successSound" preload="auto">
-  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
-  <source src="https://actions.google.com/sounds/v1/alarms/beep_short.mp3" type="audio/mpeg">
-</audio>
+    <!-- À placer juste avant </body> -->
+    <audio id="successSound" preload="auto">
+    <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+    <source src="https://actions.google.com/sounds/v1/alarms/beep_short.mp3" type="audio/mpeg">
+    </audio>
 
-<script src="app.js"></script>
-
+    <script src="app.js"></script>
 </body>
 </html>
